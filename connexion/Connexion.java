@@ -13,15 +13,18 @@ public class Connexion {
     private static Connexion instane;
 
     private Connexion() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(url, login, password);
-        } catch (ClassNotFoundException e) {
-            System.out.println("Driver introvable");
-        } catch (SQLException e) {
-            System.out.println("Connexion errror");
-            System.out.println(e.getMessage());
-        }
+       try {
+					Class.forName("org.postgresql.Driver").newInstance();
+				} catch (InstantiationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalAccessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
     }
 
     public Connection getConnection() {
