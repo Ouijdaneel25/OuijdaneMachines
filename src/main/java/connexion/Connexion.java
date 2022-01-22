@@ -6,13 +6,14 @@ import java.sql.SQLException;
 
 public class Connexion {
 
-	private static String login = "qmcdzpctqdiweq";
-	private static String password = "ad2aa790656390d317dd2c3fd296ffcbf711d786d3b8ce1d93108c023608c000";
-	private static String url = "jdbc:postgres://ec2-3-222-49-168.compute-1.amazonaws.com/dcifuoonpgeinc?sslmode=require";
-	private Connection connection = null;
+    private Connection connection = null;
 	private static Connexion instane;
 
 	private Connexion() {
+
+	}
+
+	public Connection getConnection() {
 		try {
 			Class.forName("org.postgresql.Driver").newInstance();
 		} catch (InstantiationException e1) {
@@ -25,20 +26,18 @@ public class Connexion {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-//		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			connection = DriverManager.getConnection(url, login, password);
-//		} catch (ClassNotFoundException e) {
-//			System.out.println("Driver introvable");
-//		} catch (SQLException e) {
-//			System.out.println("Connexion errror");
-//			System.out.println(e.getMessage());
-//		}
-	}
 
-	
+		String username = "qmcdzpctqdiweq";
+		String password = "ad2aa790656390d317dd2c3fd296ffcbf711d786d3b8ce1d93108c023608c000";
+		String dbUrl = "jdbc:postgresql://" + "ec2-3-222-49-168.compute-1.amazonaws.com:5432"
+				+ "/dcifuoonpgeinc?sslmode=require";
+		try {
+			return DriverManager.getConnection(dbUrl, username, password);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-	public Connection getConnection() {
 		return connection;
 	}
 
